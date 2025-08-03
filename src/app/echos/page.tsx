@@ -46,7 +46,7 @@ export default function EchosPage() {
           {/* Echos Logo */}
           <div className="flex justify-center mb-8">
             <Image 
-              src="/Echos_logo.svg" 
+              src="/Echos_Logo.svg" 
               alt="Echos Logo" 
               width={300}
               height={100}
