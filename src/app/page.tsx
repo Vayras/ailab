@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import MobileNavbar from '../components/MobileNavbar';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 import { useEffect, useState } from 'react';
 
@@ -21,45 +23,13 @@ export default function Home() {
 
   return (
     <div className="text-white min-h-screen bg-black">
-      {/* Header/Navigation */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black/20 backdrop-blur-lg border-b border-white/10' 
-          : 'bg-transparent'
-      }`}>
-        <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
-          <div className="flex items-center space-x-12">
-            <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd" clipRule="evenodd" d="M12.1379 6.10501e-07C13.182 1.9378e-05 14.1155 0.65071 14.4771 1.63028L22.7328 24H17.5474L11.8095 8.07802C11.7114 7.80596 11.328 7.80258 11.225 8.07285L5.1602 24H0.174408L8.52912 1.62145C8.89311 0.646461 9.82424 2.4241e-05 10.865 6.10501e-07H12.1379ZM11.8664 7.66528C11.8792 7.67389 11.8918 7.683 11.9041 7.69268C11.8796 7.67334 11.8539 7.65603 11.8271 7.64093L11.8664 7.66528Z" fill="white"/>
-              <path fillRule="evenodd" clipRule="evenodd" d="M33.8182 6.10501e-07C34.6355 6.10501e-07 35.2981 0.66258 35.2981 1.47991V24H30.2934V5.61039H25.2467V2.91964L30.9037 0.240159C31.2374 0.0821151 31.602 4.54225e-06 31.9712 6.10501e-07C32.3061 -2.95651e-06 32.8698 1.07102e-05 33.8182 6.10501e-07Z" fill="white"/>
-            </svg>
-            <nav className="hidden md:flex space-x-8 text-gray-300">
-              <a href="#" className="hover:text-white transition-colors">Home</a>
-              <a href="#" className="hover:text-white transition-colors">About</a>
-              <a href="#" className="hover:text-white transition-colors">Echos App</a>
-              <a href="#" className="hover:text-white transition-colors">Technology</a>
-            </nav>
-          </div>
-          <div className="flex items-center space-x-4">
-            <button className="hidden md:block border border-white/80 text-white px-4 py-1.5 rounded-md hover:bg-white/10 transition-colors font-medium">
-              Contact us
-            </button>
-            
-            {/* Mobile menu button */}
-            <button 
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar isScrolled={isScrolled} onMobileMenuOpen={() => setIsMobileMenuOpen(true)} />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6" style={{background: 'radial-gradient(ellipse at top left, rgba(31, 41, 55, 0.514) 0%, #000000 70%), radial-gradient(ellipse at bottom right, rgba(31, 41, 55, 0.514) 0%, #000000 70%)'}}>
+      <section id="hero" className="min-h-screen flex items-center justify-center px-6" style={{
+    backgroundImage: `radial-gradient(ellipse at bottom right, rgba(47, 60, 75, 0.8), rgba(0, 0, 0, 0.8) 70%), 
+                      radial-gradient(ellipse at top left, rgba(136, 163, 193, 0.8), rgba(0, 0, 0, 0.8) 60%)`
+  }}>
         <div className="max-w-4xl mx-auto text-center my-45">
           <div className="flex justify-center mb-4 items-baseline gap-4">
             <svg width="80" height="51" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,10 +53,10 @@ export default function Home() {
       <section className="py-20 px-6 bg-black" >
         <div className="max-w-6xl mx-auto">
           <div className="mb-12">
-            <p className="text-sm text-gray-500 mb-4 tracking-wider flex items-center">
-              <hr className='w-8 border-t border-gray-700 mr-4'/>
-              <span>OUR CREATIONS</span>
-            </p>
+            <div className="flex items-center mb-4">
+              <hr className="w-8 border-t border-gray-700 mr-4" />
+              <span className="text-sm text-gray-500 tracking-wider">OUR CREATIONS</span>
+            </div>
             <h2 className="text-5xl font-light text-white mb-8">Products</h2>
             <p className="text-xl text-gray-400 max-w-[600px] leading-relaxed font-light">
               A1 Labs builds intelligent software that enhances how people work, think, and create. From transcription to coding, our AI-first tools are designed for clarity, speed, and real-world performance. Here&#39;s a preview of what we&#39;re building:
@@ -202,7 +172,7 @@ export default function Home() {
       </section>
 
       {/* Mission & Values Section */}
-      <section className="py-32 px-6 bg-black">
+      <section id="mission-values" className="py-32 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="mb-20">
@@ -210,7 +180,7 @@ export default function Home() {
               <hr className="w-12 border-t border-gray-700"/>
               <span className="text-sm text-gray-500 tracking-wider">What Drives Us</span>
             </div>
-            <h2 className="text-5xl font-light text-white mb-8 max-w-md">
+            <h2 className="text-4xl font-bold text-white mb-8 max-w-md">
               Our Mission & Values
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl leading-relaxed">
@@ -219,55 +189,63 @@ export default function Home() {
           </div>
 
           {/* Values Grid */}
-          <div className="grid md:grid-cols-2 gap-px bg-[#1D1F21] max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-px bg-gray-800 max-w-7xl mx-auto">
             {/* Human-Centered Design */}
-            <div className="bg-black p-12 text-white">
-              <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-8">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Human-Centered Design</h3>
-              <p className="text-gray-400 leading-relaxed">
+            <div className="bg-black p-16 text-white">
+              <Image 
+                src="/human_centered.svg" 
+                alt="Human Centered Icon" 
+                width={80}
+                height={80}
+                className="w-20 h-20 mb-10"
+              />
+              <h3 className="text-3xl font-light mb-8">Human-Centered Design</h3>
+              <p className="text-gray-400 leading-relaxed text-lg">
                 Tools should feel intuitive, assistive, and helpful.
               </p>
             </div>
 
             {/* Speed & Simplicity */}
-            <div className="bg-black p-12 text-white">
-              <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-8">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Speed & Simplicity</h3>
-              <p className="text-gray-400 leading-relaxed">
+            <div className="bg-black p-16 text-white">
+              <Image 
+                src="/Lightning.svg" 
+                alt="Lightning Icon" 
+                width={80}
+                height={80}
+                className="w-20 h-20 mb-10"
+              />
+              <h3 className="text-3xl font-light mb-8">Speed & Simplicity</h3>
+              <p className="text-gray-400 leading-relaxed text-lg">
                 Smart doesn&apos;t have to mean complicated.
               </p>
             </div>
 
             {/* Privacy by Default */}
-            <div className="bg-black p-12 text-white">
-              <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-8">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Privacy by Default</h3>
-              <p className="text-gray-400 leading-relaxed">
+            <div className="bg-black p-16 text-white">
+              <Image 
+                src="/Lock.svg" 
+                alt="Lock Icon" 
+                width={80}
+                height={80}
+                className="w-20 h-20 mb-10"
+              />
+              <h3 className="text-3xl font-light mb-8">Privacy by Default</h3>
+              <p className="text-gray-400 leading-relaxed text-lg">
                 Your data stays yours. Always.
               </p>
             </div>
 
             {/* Curiosity-Driven */}
-            <div className="bg-black p-12 text-white">
-              <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center mb-8">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-semibold mb-4">Curiosity-Driven</h3>
-              <p className="text-gray-400 leading-relaxed">
+            <div className="bg-black p-16 text-white">
+              <Image 
+                src="/Bulb.svg" 
+                alt="Bulb Icon" 
+                width={80}
+                height={80}
+                className="w-20 h-20 mb-10"
+              />
+              <h3 className="text-3xl font-light mb-8">Curiosity-Driven</h3>
+              <p className="text-gray-400 leading-relaxed text-lg">
                 We experiment boldly, build fast, and learn constantly.
               </p>
             </div>
@@ -276,7 +254,7 @@ export default function Home() {
       </section>
 
       {/* Let's Talk Section */}
-      <section className="py-32 px-6 bg-black">
+      <section id="lets-talk" className="py-32 px-6 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="rounded-3xl p-16 max-w-5xl mx-auto" style={{background: 'linear-gradient(135deg, rgba(24, 30, 37, 0.6) 0%, transparent 50%, #090A0B 100%), linear-gradient(315deg, rgba(24, 30, 37, 0.6) 0%, transparent 50%, #090A0B 100%), radial-gradient(ellipse at center, #090A0B 0%, rgba(24, 30, 37, 0.4) 60%, transparent 100%), #090A0B'}}>
             <div className="text-left max-w-4xl">
@@ -292,53 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-6" style={{background: 'radial-gradient(ellipse at bottom left, rgba(31, 41, 55, 0.514)  0%, #000000 70%)'}}>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-16">
-            {/* Logo Section */}
-            <div>
-              <div className="flex items-center space-x-3 mb-8">
-                <svg width="36" height="24" viewBox="0 0 36 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M12.1379 6.10501e-07C13.182 1.9378e-05 14.1155 0.65071 14.4771 1.63028L22.7328 24H17.5474L11.8095 8.07802C11.7114 7.80596 11.328 7.80258 11.225 8.07285L5.1602 24H0.174408L8.52912 1.62145C8.89311 0.646461 9.82424 2.4241e-05 10.865 6.10501e-07H12.1379ZM11.8664 7.66528C11.8792 7.67389 11.8918 7.683 11.9041 7.69268C11.8796 7.67334 11.8539 7.65603 11.8271 7.64093L11.8664 7.66528Z" fill="white"/>
-                  <path fillRule="evenodd" clipRule="evenodd" d="M33.8182 6.10501e-07C34.6355 6.10501e-07 35.2981 0.66258 35.2981 1.47991V24H30.2934V5.61039H25.2467V2.91964L30.9037 0.240159C31.2374 0.0821151 31.602 4.54225e-06 31.9712 6.10501e-07C32.3061 -2.95651e-06 32.8698 1.07102e-05 33.8182 6.10501e-07Z" fill="white"/>
-                </svg>
-                <span className="text-2xl font-light text-white">LAB</span>
-              </div>
-            </div>
-            
-            {/* Company Section */}
-            <div>
-              <h4 className="text-white font-medium mb-6">Company</h4>
-              <ul className="space-y-4">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Echos App</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Technology</a></li>
-              </ul>
-            </div>
-            
-            {/* Connect Section */}
-            <div>
-              <h4 className="text-white font-medium mb-6">Connect</h4>
-              <ul className="space-y-4">
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">X</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Github</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          {/* Bottom right - Powered by Jan3 */}
-          <div className="mt-16 flex justify-end">
-            <div className="flex items-center space-x-2 text-gray-500 text-sm">
-              <span>Powered by</span>
-              <span className="font-semibold">Jan3</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Mobile Navigation */}
       <MobileNavbar 
